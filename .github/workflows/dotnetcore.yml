@@ -26,9 +26,9 @@ jobs:
     - name: Login to Docker hub
       run: docker login --username ${{ secrets.DOCKER_REPO_USERNAME }} --password ${{ secrets.DOCKER_REPO_PASSWORD }}
     - name: Build the Docker image for linux
-      run: docker build --pull -t xpload/webapi:x64 -f .\WebApi\Dockerfile .
+      run: docker build --rm --pull -t xpload/webapi:x64 -f WebApi/Dockerfile .
     - name: Build the Docker image for arm32
-      run: docker build --pull -t xpload/webapi:arm32 -f .\WebApi\Dockerfile.debian-arm32 .
+      run: docker build --rm --pull -t xpload/webapi:arm32 -f WebApi/Dockerfile.debian-arm32 .
     - name: Create Docker manifest
       run: docker manifest create xpload/webapi:latest xpload/webapi:arm32 xpload/webapi:x64
     - name: Push Docker manifest
