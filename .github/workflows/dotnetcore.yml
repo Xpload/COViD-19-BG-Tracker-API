@@ -32,5 +32,7 @@ jobs:
     - name: Create Docker manifest and push
       run: |
         export DOCKER_CLI_EXPERIMENTAL=enabled
+        docker push xpload/webapi:x64
+        docker push xpload/webapi:arm32
         docker manifest create xpload/webapi:latest xpload/webapi:arm32 xpload/webapi:x64
         docker manifest push xpload/webapi:latest
